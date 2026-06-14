@@ -6,9 +6,9 @@ name: Publish Wiki
 #
 # Each docs/<name>.md becomes a wiki page titled from the filename
 # (enchant-template.md -> "Enchant Template"). Intra-doc relative links like
-# (architecture.md) are rewritten to the matching wiki page, and a _Sidebar.md
-# nav is generated. docs/home.md publishes as the wiki landing page (Home) and is
-# kept out of the sidebar; anything else already in the wiki is left alone.
+# (architecture.md) are rewritten to the matching wiki page. docs/home.md
+# publishes as the wiki landing page (Home); anything else already in the wiki
+# is left alone.
 on:
   push:
     branches: [ master ]
@@ -49,9 +49,6 @@ jobs:
 
           git clone "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.wiki.git" wiki
 
-          sidebar="wiki/_Sidebar.md"
-          printf '### Stat Booster\n\n' > "$sidebar"
-
           for f in docs/*.md; do
             base="$(basename "$f" .md)"
             slug="${MAP[$base]}"
@@ -64,12 +61,6 @@ jobs:
               dst="${MAP[$src]}"
               sed -i -E "s@\]\(${src}\.md(#[^)]*)?\)@](${dst}\1)@g" "$out"
             done
-
-            # Home is the landing page, not a nav entry.
-            if [ "$base" != "home" ]; then
-              title="$(echo "$slug" | tr '-' ' ')"
-              printf -- '- [[%s|%s]]\n' "$title" "$slug" >> "$sidebar"
-            fi
           done
 
       - name: Commit + push to wiki
