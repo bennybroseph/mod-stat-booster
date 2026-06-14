@@ -36,3 +36,4 @@ This module uses the [MIT](https://github.com/bennybroseph/mod-stat-booster/blob
 ## Credits
 - [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk) community for their help with implementing my hooks and creating a great core.
 - [3ndos](https://github.com/3ndos) for inspiring this module (and whoever made the original LUA script)!
+- [AnchyDev](https://github.com/AnchyDev) for creating the original module this project is a fork of.
