@@ -29,9 +29,6 @@ Visit the [Wiki](https://github.com/bennybroseph/mod-stat-booster/wiki/Database)
 ![Item02](https://i.imgur.com/qCgx7XS.png)
 ![Item03](https://i.imgur.com/nnh3YA1.png)
 
-## Contact
-If you would like to help out with the mod or just need help there is a [Discord Server](https://discord.gg/xdVPGcpJ8C) you can join.
-
 ## License
 
 This module uses the [MIT](https://github.com/bennybroseph/mod-stat-booster/blob/master/LICENSE) license.
