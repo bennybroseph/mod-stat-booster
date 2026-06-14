@@ -8,6 +8,7 @@
 ## About
 This is a module for [Azeroth Core](https://github.com/azerothcore/azerothcore-wotlk) inspired by the [RandomEnchants](https://github.com/azerothcore/mod-random-enchants) module. 
 The module will randomly enchant items with stats that compliment the item.
+
 This module is a fork of [StatBooster by AnchyDev](https://github.com/AnchyDev/StatBooster) and serves as an updated and working version of the original.
 
 ## Install
