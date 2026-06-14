@@ -2,7 +2,7 @@
 ## Build Status
 |Master|Dev|
 |-|-|
-| ![Build Status](https://github.com/anchydev/statbooster/actions/workflows/core-build.yml/badge.svg?branch=master) | ![Build Status](https://github.com/anchydev/statbooster/actions/workflows/core-build.yml/badge.svg?branch=dev) |
+| ![Build Status](https://github.com/bennybroseph/mod-stat-booster/actions/workflows/core-build.yml/badge.svg?branch=master) | ![Build Status](https://github.com/bennybroseph/mod-stat-booster/actions/workflows/core-build.yml/badge.svg?branch=dev) |
 
 ⚠️ !! This module is not ready yet, however it is usable in its current state !! ⚠️
 ## About
@@ -19,10 +19,10 @@ The features I have planned for this module that differ from the original are:
 - **Item Level Based** - You can assign item level ranges to enchants in the database table for each entry preventing high level enchants on low level items.
 
 ## Install
-1. **[Clone](https://git-scm.com/docs/git-clone)** this repository into your `./azerothcore-wotlk/modules` folder. (Make sure to clone it into a subdirectory called StatBooster)
-2. **Place** `statbooster.conf.dist` into your server `./configs/modules` directory.
+1. **[Clone](https://git-scm.com/docs/git-clone)** this repository into your `./azerothcore-wotlk/modules` folder. (Make sure to clone it into a subdirectory called mod-stat-booster)
+2. **Place** `mod-stat-booster.conf.dist` into your server `./configs/modules` directory.
 
-Visit the [Wiki](https://github.com/AnchyDev/StatBooster/wiki/Enchant%20Template) if you require help with setting up enchants in the database.
+Visit the [Wiki](https://github.com/bennybroseph/mod-stat-booster/wiki/Database) if you require help with setting up enchants in the database.
 
 ## Example Items
 ![Item01](https://i.imgur.com/MYgpZKK.png)
@@ -34,7 +34,7 @@ If you would like to help out with the mod or just need help there is a [Discord
 
 ## License
 
-This module uses the [MIT](https://github.com/AnchyDev/StatBooster/blob/master/LICENSE) license.
+This module uses the [MIT](https://github.com/bennybroseph/mod-stat-booster/blob/master/LICENSE) license.
 
 ## Credits
 - [AzerothCore](https://github.com/azerothcore/azerothcore-wotlk) community for their help with implementing my hooks and creating a great core.

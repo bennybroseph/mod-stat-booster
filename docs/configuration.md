@@ -1,7 +1,7 @@
 # Configuration
 
 All options live under the `[worldserver]` section of
-`statbooster.conf` (copy `statbooster.conf.dist` into your server's
+`mod-stat-booster.conf` (copy `mod-stat-booster.conf.dist` into your server's
 `configs/modules/`). They are read in `StatBoosterWorld::OnAfterConfigLoad`, so
 `.reload config` re-applies them and re-loads the [Database](database.md) pools.
 
