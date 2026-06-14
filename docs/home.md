@@ -17,6 +17,7 @@ stat chosen to complement the item.
 
 1. Clone into `azerothcore-wotlk/modules/mod-stat-booster` and rebuild the core.
 2. Copy `mod-stat-booster.conf.dist` into your server's `configs/modules/`.
-3. Set `StatBooster.Enable = 1` and start the worldserver.
+3. Start the worldserver — the module is enabled by default.
 
-See [Configuration](configuration.md) for the full option list.
+See [Configuration](configuration.md) for the full option list (including how to
+disable it or tune the boost chances).

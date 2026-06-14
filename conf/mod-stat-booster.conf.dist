@@ -5,11 +5,11 @@
 # 
 #	StatBooster.Enable
 #		Description: Enable/Disable the module.
-#		Default:	0 - (Disabled)
-#					1 - (Enabled)
+#					0 - (Disabled)
+#		Default:	1 - (Enabled)
 #
 
-StatBooster.Enable = 0
+StatBooster.Enable = 1
 
 #
 #	StatBooster.VerboseEnable
@@ -75,29 +75,29 @@ StatBooster.OnCraftItemEnable = 1
 #
 #	StatBooster.LootItemChance
 #		Description: The percent chance that you will receive a boosted item from looting.
-#		Default:	100
+#		Default:	55
 #		Range:		0-100
 #
 
-StatBooster.LootItemChance = 100
+StatBooster.LootItemChance = 55
 
 #
 #	StatBooster.QuestRewardChance
 #		Description: The percent chance that you will receive a boosted item from quest rewards.
-#		Default:	100
+#		Default:	30
 #		Range:		0-100
 #
 
-StatBooster.QuestRewardChance = 100
+StatBooster.QuestRewardChance = 30
 
 #
 #	StatBooster.CraftItemChance
 #		Description: The percent chance that you will receive a boosted item from crafting.
-#		Default:	100
+#		Default:	85
 #		Range:		0-100
 #
 
-StatBooster.CraftItemChance = 100
+StatBooster.CraftItemChance = 85
 
 ########################################
 

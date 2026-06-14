@@ -5,13 +5,14 @@ All options live under the `[worldserver]` section of
 `configs/modules/`). They are read in `StatBoosterWorld::OnAfterConfigLoad`, so
 `.reload config` re-applies them and re-loads the [Database](database.md) pools.
 
-Nothing else is loaded while `StatBooster.Enable = 0`.
+The module is enabled by default; set `StatBooster.Enable = 0` to turn it off
+(nothing else is loaded while it is disabled).
 
 ## Module
 
 | Key | Default | Description |
 |-----|---------|-------------|
-| `StatBooster.Enable` | `0` | Master on/off. |
+| `StatBooster.Enable` | `1` | Master on/off. |
 | `StatBooster.VerboseEnable` | `0` | Debug logging to chat/console. Has a real performance cost in hot hooks — debugging only. |
 
 ## Sources & chances
@@ -23,9 +24,9 @@ Each item source can be toggled and given an independent proc chance (0–100).
 | `StatBooster.OnLootItemEnable` | `1` | Boost looted items (also covers group-roll rewards). |
 | `StatBooster.OnQuestRewardItemEnable` | `1` | Boost quest reward items. |
 | `StatBooster.OnCraftItemEnable` | `1` | Boost crafted items. |
-| `StatBooster.LootItemChance` | `100` | Percent chance for loot / rolls. |
-| `StatBooster.QuestRewardChance` | `100` | Percent chance for quest rewards. |
-| `StatBooster.CraftItemChance` | `100` | Percent chance for crafting. |
+| `StatBooster.LootItemChance` | `55` | Percent chance for loot / rolls. |
+| `StatBooster.QuestRewardChance` | `30` | Percent chance for quest rewards. |
+| `StatBooster.CraftItemChance` | `85` | Percent chance for crafting. |
 
 ## Item eligibility
 
