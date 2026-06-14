@@ -8,15 +8,7 @@
 ## About
 This is a module for [Azeroth Core](https://github.com/azerothcore/azerothcore-wotlk) inspired by the [RandomEnchants](https://github.com/azerothcore/mod-random-enchants) module. 
 The module will randomly enchant items with stats that compliment the item.
-I am developing this module in an attempt to take it in a slightly different direction and to fix bugs that are present in the original module.
-
-This is my first C++ project so any tips are appreciated and welcome! :)
-
-## Features
-The features I have planned for this module that differ from the original are:
-- **Stat Analysis** - Items are analyzed and enchanted based on stats already on the item. (If there are no stats then it is analyzed based off class & subclass types.)
-- **Expandable Enchant Pool** - You can add enchant ids to your database table to expand your pool.
-- **Item Level Based** - You can assign item level ranges to enchants in the database table for each entry preventing high level enchants on low level items.
+This module is a fork of [StatBooster by AnchyDev](https://github.com/AnchyDev/StatBooster) and serves as an updated and working version of the original.
 
 ## Install
 1. **[Clone](https://git-scm.com/docs/git-clone)** this repository into your `./azerothcore-wotlk/modules` folder. (Make sure to clone it into a subdirectory called mod-stat-booster)
