@@ -6,8 +6,10 @@ stat chosen to complement the item.
 
 ## Documentation
 
-- **[Architecture](architecture.md)** — how the module works: the hooks, the
-  boost flow, role scoring, and how enchants get applied.
+- **[How It Works](how-it-works.md)** — a plain-English overview of what the
+  module does in game.
+- **[Architecture](architecture.md)** — how it's built: the hooks, the boost
+  flow, role scoring, and how enchants get applied.
 - **[Configuration](configuration.md)** — every `StatBooster.*` option and its
   default.
 - **[Database](database.md)** — the two driver tables and how to add or tune
