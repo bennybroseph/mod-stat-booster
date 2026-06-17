@@ -63,7 +63,7 @@ public:
         std::vector<EnchantDefinition> pool;
     };
 
-    EnchantPool EnchantPool;
+    EnchantPool Enchants;
 
     struct EnchantScore
     {

@@ -491,7 +491,7 @@ bool StatBoostMgr::BoostItem(Player* player, Item* item, uint32 chance)
     }
 
     //Fetch an enchant from the enchant pool.
-    auto enchant = sBoostConfigMgr->EnchantPool.Get(role, itemClassMask, itemSubClassMask, itemTypeMask, itemLevel);
+    auto enchant = sBoostConfigMgr->Enchants.Get(role, itemClassMask, itemSubClassMask, itemTypeMask, itemLevel);
 
     //Failed to find a valid enchant.
     if (!enchant)

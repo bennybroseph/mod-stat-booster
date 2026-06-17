@@ -149,7 +149,7 @@ bool StatBoosterConfig::EnchantPool::Load()
 
         LOG_INFO("module", "Loading StatBooster enchants from statbooster_enchant_template...");
 
-        sBoostConfigMgr->EnchantPool.Clear();
+        sBoostConfigMgr->Enchants.Clear();
 
         do
         {
@@ -166,7 +166,7 @@ bool StatBoosterConfig::EnchantPool::Load()
             enchantDef.ItemTypeMask = fields[6].Get<uint32>();
 
             enchantCount++;
-            sBoostConfigMgr->EnchantPool.Add(enchantDef);
+            sBoostConfigMgr->Enchants.Add(enchantDef);
 
             if (sBoostConfigMgr->VerboseEnable)
             {
