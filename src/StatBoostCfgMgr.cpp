@@ -1,5 +1,7 @@
 #include "StatBoostCfgMgr.h"
 
+#include "Containers.h"
+
 std::vector<StatBoosterConfig::EnchantScore>* StatBoosterConfig::EnchantScorePool::Get()
 {
     return &scores;
@@ -112,7 +114,7 @@ void StatBoosterConfig::EnchantPool::Add(EnchantDefinition definition)
 
 EnchantDefinition* StatBoosterConfig::EnchantPool::Get(uint32 roleMask, uint32 classMask, uint32 subClassMask, uint32 itemTypeMask, uint32 itemLevel)
 {
-    std::shuffle(std::begin(pool), std::end(pool), randomEngine);
+    Acore::Containers::RandomShuffle(pool);
 
     auto iterator = std::find_if(pool.begin(), pool.end(), [&](const EnchantDefinition& data)
     {
