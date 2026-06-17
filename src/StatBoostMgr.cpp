@@ -1,10 +1,10 @@
 #include "StatBoostMgr.h"
 
-StatBoostMgr::StatRole StatBoostMgr::GetStatRoleFromSubClass(Item* item)
+StatBoostMgr::StatRole StatBoostMgr::RoleFromItemType(uint32 itemClass, uint32 itemSubClass, uint32 itemType, RandFn rng)
 {
-    if (item->GetTemplate()->Class == ITEM_CLASS_WEAPON)
+    if (itemClass == ITEM_CLASS_WEAPON)
     {
-        switch (item->GetTemplate()->SubClass)
+        switch (itemSubClass)
         {
         case ITEM_SUBCLASS_WEAPON_MACE2:
         case ITEM_SUBCLASS_WEAPON_POLEARM:
@@ -12,7 +12,7 @@ StatBoostMgr::StatRole StatBoostMgr::GetStatRoleFromSubClass(Item* item)
         case ITEM_SUBCLASS_WEAPON_GUN:
         case ITEM_SUBCLASS_WEAPON_BOW:
         case ITEM_SUBCLASS_WEAPON_CROSSBOW:
-            switch (urand(0, 2))
+            switch (rng(0, 2))
             {
             case 0:
                 return STAT_ROLE_TANK;
@@ -28,7 +28,7 @@ StatBoostMgr::StatRole StatBoostMgr::GetStatRoleFromSubClass(Item* item)
             return STAT_ROLE_PHYS;
 
         case ITEM_SUBCLASS_WEAPON_DAGGER:
-            switch (urand(0, 2))
+            switch (rng(0, 2))
             {
             case 0:
                 return STAT_ROLE_PHYS;
@@ -41,7 +41,7 @@ StatBoostMgr::StatRole StatBoostMgr::GetStatRoleFromSubClass(Item* item)
             }
 
         case ITEM_SUBCLASS_WEAPON_STAFF:
-            switch (urand(0, 3))
+            switch (rng(0, 3))
             {
             case 0:
                 return STAT_ROLE_TANK;
@@ -62,7 +62,7 @@ StatBoostMgr::StatRole StatBoostMgr::GetStatRoleFromSubClass(Item* item)
         case ITEM_SUBCLASS_WEAPON_SWORD:
         case ITEM_SUBCLASS_WEAPON_SWORD2:
         case ITEM_SUBCLASS_WEAPON_FIST:
-            switch (urand(0, 1))
+            switch (rng(0, 1))
             {
             case 0:
                 return STAT_ROLE_TANK;
@@ -75,15 +75,15 @@ StatBoostMgr::StatRole StatBoostMgr::GetStatRoleFromSubClass(Item* item)
             return STAT_ROLE_SPELL;
         }
     }
-    else if (item->GetTemplate()->Class == ITEM_CLASS_ARMOR)
+    else if (itemClass == ITEM_CLASS_ARMOR)
     {
-        switch (item->GetTemplate()->SubClass)
+        switch (itemSubClass)
         {
         case ITEM_SUBCLASS_ARMOR_CLOTH:
-            switch (item->GetTemplate()->InventoryType)
+            switch (itemType)
             {
             case INVTYPE_CLOAK:
-                switch (urand(0, 3))
+                switch (rng(0, 3))
                 {
                 case 0:
                     return STAT_ROLE_TANK;
@@ -106,7 +106,7 @@ StatBoostMgr::StatRole StatBoostMgr::GetStatRoleFromSubClass(Item* item)
         case ITEM_SUBCLASS_ARMOR_LEATHER:
         case ITEM_SUBCLASS_ARMOR_MAIL:
         case ITEM_SUBCLASS_ARMOR_PLATE:
-            switch (urand(0, 3))
+            switch (rng(0, 3))
             {
             case 0:
                 return STAT_ROLE_TANK;
@@ -123,7 +123,7 @@ StatBoostMgr::StatRole StatBoostMgr::GetStatRoleFromSubClass(Item* item)
 
         case ITEM_SUBCLASS_ARMOR_BUCKLER:
         case ITEM_SUBCLASS_ARMOR_SHIELD:
-            switch (urand(0, 1))
+            switch (rng(0, 1))
             {
             case 0:
                 return STAT_ROLE_TANK;
@@ -135,6 +135,12 @@ StatBoostMgr::StatRole StatBoostMgr::GetStatRoleFromSubClass(Item* item)
 
     return STAT_ROLE_NONE;
 }   
+
+StatBoostMgr::StatRole StatBoostMgr::GetStatRoleFromSubClass(Item* item)
+{
+    auto itemTemplate = item->GetTemplate();
+    return RoleFromItemType(itemTemplate->Class, itemTemplate->SubClass, itemTemplate->InventoryType);
+}
 
 StatBoostMgr::StatRole StatBoostMgr::ScoreItem(Item* item, bool hasAdditionalSpells)
 {

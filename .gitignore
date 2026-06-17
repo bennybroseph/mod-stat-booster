@@ -47,3 +47,9 @@ local.properties
 .project
 .cproject
 CLAUDE.md
+
+#
+# Tests
+#
+# Test run log (tee'd by tests/run-in-docker.sh)
+tests/_lastrun.log

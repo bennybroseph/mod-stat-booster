@@ -14,6 +14,8 @@ stat chosen to complement the item.
   default.
 - **[Database](database.md)** — the two driver tables and how to add or tune
   enchants.
+- **[Testing](testing.md)** — what's unit-tested and how to build and run the
+  tests (including in Docker).
 
 ## Quick start
 

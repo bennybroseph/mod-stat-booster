@@ -2,15 +2,11 @@
 #define MODULE_STAT_BOOST_MGR
 
 #include "StatBoostCommon.h"
+#include "Random.h"
 
 class StatBoostMgr
 {
 public:
-    static bool BoostItem(Player* player, Item* item, uint32 chance);
-    static bool IsBoosted(Item* item);
-    static void MakeSoulbound(Item* item, Player* player);
-
-private:
     enum StatRole
     {
         STAT_ROLE_NONE = 0,
@@ -20,6 +16,18 @@ private:
         STAT_ROLE_SPELL = 8
     };
 
+    // Random source used by RoleFromItemType; defaults to the core urand.
+    // Injectable so the role mapping can be unit tested deterministically.
+    using RandFn = uint32(*)(uint32, uint32);
+
+    static bool BoostItem(Player* player, Item* item, uint32 chance);
+    static bool IsBoosted(Item* item);
+    static void MakeSoulbound(Item* item, Player* player);
+
+    // Maps an item's class/subclass/inventory type to a complementing role.
+    static StatRole RoleFromItemType(uint32 itemClass, uint32 itemSubClass, uint32 itemType, RandFn rng = &urand);
+
+private:
     static constexpr uint32 ENCHANT_DUMMY = 2814; // Scaling stat, used due to enchanting weirdness.
 
     struct ScoreData
