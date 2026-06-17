@@ -26,7 +26,7 @@ picked at random.
 
 ### How masks work
 
-- **RoleMask** uses the `StatType` bits directly: `TANK=1`, `PHYS=2`,
+- **RoleMask** uses the `StatRole` bits directly: `TANK=1`, `PHYS=2`,
   `HYBRID=4`, `SPELL=8`. Combine by adding, e.g. `3` = TANK+PHYS,
   `7` = TANK+PHYS+HYBRID, `12` = HYBRID+SPELL.
 - **ClassMask / SubClassMask / ItemTypeMask** are `1 << value`, where the value

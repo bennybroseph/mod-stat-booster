@@ -1,6 +1,6 @@
 #include "StatBoostMgr.h"
 
-StatBoostMgr::StatType StatBoostMgr::GetStatTypeFromSubClass(Item* item)
+StatBoostMgr::StatRole StatBoostMgr::GetStatRoleFromSubClass(Item* item)
 {
     if (item->GetTemplate()->Class == ITEM_CLASS_WEAPON)
     {
@@ -15,45 +15,45 @@ StatBoostMgr::StatType StatBoostMgr::GetStatTypeFromSubClass(Item* item)
             switch (urand(0, 2))
             {
             case 0:
-                return STAT_TYPE_TANK;
+                return STAT_ROLE_TANK;
 
             case 1:
-                return STAT_TYPE_PHYS;
+                return STAT_ROLE_PHYS;
 
             case 2:
-                return STAT_TYPE_HYBRID;
+                return STAT_ROLE_HYBRID;
             }
 
         case ITEM_SUBCLASS_WEAPON_THROWN:
-            return STAT_TYPE_PHYS;
+            return STAT_ROLE_PHYS;
 
         case ITEM_SUBCLASS_WEAPON_DAGGER:
             switch (urand(0, 2))
             {
             case 0:
-                return STAT_TYPE_PHYS;
+                return STAT_ROLE_PHYS;
 
             case 1:
-                return STAT_TYPE_HYBRID;
+                return STAT_ROLE_HYBRID;
 
             case 2:
-                return STAT_TYPE_SPELL;
+                return STAT_ROLE_SPELL;
             }
 
         case ITEM_SUBCLASS_WEAPON_STAFF:
             switch (urand(0, 3))
             {
             case 0:
-                return STAT_TYPE_TANK;
+                return STAT_ROLE_TANK;
 
             case 1:
-                return STAT_TYPE_PHYS;
+                return STAT_ROLE_PHYS;
 
             case 2:
-                return STAT_TYPE_HYBRID;
+                return STAT_ROLE_HYBRID;
 
             case 3:
-                return STAT_TYPE_SPELL;
+                return STAT_ROLE_SPELL;
             }
 
         case ITEM_SUBCLASS_WEAPON_AXE:
@@ -65,14 +65,14 @@ StatBoostMgr::StatType StatBoostMgr::GetStatTypeFromSubClass(Item* item)
             switch (urand(0, 1))
             {
             case 0:
-                return STAT_TYPE_TANK;
+                return STAT_ROLE_TANK;
 
             case 1:
-                return STAT_TYPE_PHYS;
+                return STAT_ROLE_PHYS;
             }
 
         case ITEM_SUBCLASS_WEAPON_WAND:
-            return STAT_TYPE_SPELL;
+            return STAT_ROLE_SPELL;
         }
     }
     else if (item->GetTemplate()->Class == ITEM_CLASS_ARMOR)
@@ -86,20 +86,20 @@ StatBoostMgr::StatType StatBoostMgr::GetStatTypeFromSubClass(Item* item)
                 switch (urand(0, 3))
                 {
                 case 0:
-                    return STAT_TYPE_TANK;
+                    return STAT_ROLE_TANK;
 
                 case 1:
-                    return STAT_TYPE_PHYS;
+                    return STAT_ROLE_PHYS;
 
                 case 2:
-                    return STAT_TYPE_HYBRID;
+                    return STAT_ROLE_HYBRID;
 
                 case 3:
-                    return STAT_TYPE_SPELL;
+                    return STAT_ROLE_SPELL;
                 }
 
             default:
-                return STAT_TYPE_SPELL;
+                return STAT_ROLE_SPELL;
             }
             break;
 
@@ -109,16 +109,16 @@ StatBoostMgr::StatType StatBoostMgr::GetStatTypeFromSubClass(Item* item)
             switch (urand(0, 3))
             {
             case 0:
-                return STAT_TYPE_TANK;
+                return STAT_ROLE_TANK;
 
             case 1:
-                return STAT_TYPE_PHYS;
+                return STAT_ROLE_PHYS;
 
             case 2:
-                return STAT_TYPE_HYBRID;
+                return STAT_ROLE_HYBRID;
 
             case 3:
-                return STAT_TYPE_SPELL;
+                return STAT_ROLE_SPELL;
             }
 
         case ITEM_SUBCLASS_ARMOR_BUCKLER:
@@ -126,22 +126,22 @@ StatBoostMgr::StatType StatBoostMgr::GetStatTypeFromSubClass(Item* item)
             switch (urand(0, 1))
             {
             case 0:
-                return STAT_TYPE_TANK;
+                return STAT_ROLE_TANK;
             case 1:
-                return STAT_TYPE_SPELL;
+                return STAT_ROLE_SPELL;
             }
         }
     }
 
-    return STAT_TYPE_NONE;
+    return STAT_ROLE_NONE;
 }   
 
-StatBoostMgr::StatType StatBoostMgr::ScoreItem(Item* item, bool hasAdditionalSpells)
+StatBoostMgr::StatRole StatBoostMgr::ScoreItem(Item* item, bool hasAdditionalSpells)
 {
-    ScoreData tankScore { STAT_TYPE_TANK, 0 },
-        physScore { STAT_TYPE_PHYS, 0 },
-        hybridScore { STAT_TYPE_HYBRID, 0 },
-        spellScore { STAT_TYPE_SPELL, 0 };
+    ScoreData tankScore { STAT_ROLE_TANK, 0 },
+        physScore { STAT_ROLE_PHYS, 0 },
+        hybridScore { STAT_ROLE_HYBRID, 0 },
+        spellScore { STAT_ROLE_SPELL, 0 };
 
     //Store the scores in a vector so I can order by highest for a winner.
     std::vector<ScoreData*> roleScores;
@@ -299,7 +299,7 @@ StatBoostMgr::StatType StatBoostMgr::ScoreItem(Item* item, bool hasAdditionalSpe
             LOG_INFO("module", "No winning score found.");
         }
 
-        return STAT_TYPE_NONE;
+        return STAT_ROLE_NONE;
     }
 
     if (sBoostConfigMgr->VerboseEnable)
@@ -310,7 +310,7 @@ StatBoostMgr::StatType StatBoostMgr::ScoreItem(Item* item, bool hasAdditionalSpe
     {
         if (sBoostConfigMgr->VerboseEnable)
         {
-            LOG_INFO("module", "Score: {}, Type: {}", score->Score, score->StatType);
+            LOG_INFO("module", "Score: {}, Type: {}", score->Score, score->Role);
         }
 
         if (score->Score > winningScore->Score)
@@ -327,7 +327,7 @@ StatBoostMgr::StatType StatBoostMgr::ScoreItem(Item* item, bool hasAdditionalSpe
             LOG_INFO("module", "No stats were scored.");
         }
 
-        return STAT_TYPE_NONE;
+        return STAT_ROLE_NONE;
     }
 
     if (sBoostConfigMgr->VerboseEnable)
@@ -335,7 +335,7 @@ StatBoostMgr::StatType StatBoostMgr::ScoreItem(Item* item, bool hasAdditionalSpe
         LOG_INFO("module", "Passed Scoring with scores: Tank({}), Phys({}), Spell({}), Hybrid({})", tankScore.Score, physScore.Score, spellScore.Score, hybridScore.Score);
     }
 
-    return winningScore->StatType;
+    return winningScore->Role;
 }
 
 void StatBoostMgr::MakeSoulbound(Item* item, Player* player)
@@ -349,7 +349,7 @@ void StatBoostMgr::MakeSoulbound(Item* item, Player* player)
     }
 }
 
-StatBoostMgr::StatType StatBoostMgr::AnalyzeItem(Item* item)
+StatBoostMgr::StatRole StatBoostMgr::AnalyzeItem(Item* item)
 {
     auto itemTemplate = item->GetTemplate();
 
@@ -366,7 +366,7 @@ StatBoostMgr::StatType StatBoostMgr::AnalyzeItem(Item* item)
 
     if (itemTemplate->StatsCount < 1 && spellsCount < 1 && item->GetItemRandomPropertyId() == 0)
     {
-        return GetStatTypeFromSubClass(item);
+        return GetStatRoleFromSubClass(item);
     }
 
     return ScoreItem(item, spellsCount);
@@ -419,23 +419,23 @@ bool StatBoostMgr::BoostItem(Player* player, Item* item, uint32 chance)
         LOG_INFO("module", "Passed Roll Check. Roll({})", roll);
     }
 
-    //Fetch the type of stats that should be applied to the piece.
-    StatType statType = AnalyzeItem(item);
+    //Fetch the role of stats that should be applied to the piece.
+    StatRole role = AnalyzeItem(item);
 
-    //Failed to find a stat type.
-    if (statType == STAT_TYPE_NONE)
+    //Failed to find a role.
+    if (role == STAT_ROLE_NONE)
     {
-        statType = GetStatTypeFromSubClass(item);
+        role = GetStatRoleFromSubClass(item);
 
         if (sBoostConfigMgr->VerboseEnable)
         {
-            LOG_INFO("module", "No stat type found, got from subclass.");
+            LOG_INFO("module", "No role found, got from subclass.");
         }
     }
 
     if (sBoostConfigMgr->VerboseEnable)
     {
-        LOG_INFO("module", "Passed Analyze Check. StatType({})", statType);
+        LOG_INFO("module", "Passed Analyze Check. Role({})", role);
     }
 
     uint32 itemClass = item->GetTemplate()->Class;
@@ -481,11 +481,11 @@ bool StatBoostMgr::BoostItem(Player* player, Item* item, uint32 chance)
 
     if (sBoostConfigMgr->VerboseEnable)
     {
-        LOG_INFO("module", ">> Trying to get enchant with role mask {}, class {}, subClass {}, itemType {}, and itemlevel {} from pool.", statType, itemClassMask, itemSubClassMask, itemTypeMask, itemLevel);
+        LOG_INFO("module", ">> Trying to get enchant with role mask {}, class {}, subClass {}, itemType {}, and itemlevel {} from pool.", role, itemClassMask, itemSubClassMask, itemTypeMask, itemLevel);
     }
 
     //Fetch an enchant from the enchant pool.
-    auto enchant = sBoostConfigMgr->EnchantPool.Get(statType, itemClassMask, itemSubClassMask, itemTypeMask, itemLevel);
+    auto enchant = sBoostConfigMgr->EnchantPool.Get(role, itemClassMask, itemSubClassMask, itemTypeMask, itemLevel);
 
     //Failed to find a valid enchant.
     if (!enchant)

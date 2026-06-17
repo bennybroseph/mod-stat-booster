@@ -53,8 +53,8 @@ BoostItem(player, item, chance)
   ├─ IsEquipment(item)                  weapon or armor only
   ├─ quality in [MinQuality, MaxQuality]
   ├─ urand(0,100) <= chance             the roll
-  ├─ statType = AnalyzeItem(item)       determine the role (see below)
-  │     └─ fallback GetStatTypeFromSubClass() if unscored
+  ├─ role = AnalyzeItem(item)           determine the role (see below)
+  │     └─ fallback GetStatRoleFromSubClass() if unscored
   ├─ enchant = EnchantPool.Get(role, classMask, subClassMask, typeMask, iLvl)
   └─ EnchantItem(...)                   apply + mark boosted
 ```
@@ -67,7 +67,7 @@ matches them.
 
 `AnalyzeItem` decides whether the item has anything to score:
 
-- No stats, no item spells, no random property → `GetStatTypeFromSubClass`
+- No stats, no item spells, no random property → `GetStatRoleFromSubClass`
   picks a role randomly from those sensible for the weapon/armor subclass.
 - Otherwise `ScoreItem` tallies a score per role by running each signal through
   the `statbooster_enchant_scores` table:
@@ -75,10 +75,10 @@ matches them.
   - stats delivered via item `Spells` (matched by aura type),
   - stats from the item's random property / suffix enchantments.
 
-  The highest-scoring role wins; a zero tie returns `STAT_TYPE_NONE`, which
-  falls back to `GetStatTypeFromSubClass`.
+  The highest-scoring role wins; a zero tie returns `STAT_ROLE_NONE`, which
+  falls back to `GetStatRoleFromSubClass`.
 
-`StatType` is a bitmask: `NONE=0, TANK=1, PHYS=2, HYBRID=4, SPELL=8`.
+`StatRole` is a bitmask: `NONE=0, TANK=1, PHYS=2, HYBRID=4, SPELL=8`.
 
 ### Applying the enchant (`EnchantItem`)
 
